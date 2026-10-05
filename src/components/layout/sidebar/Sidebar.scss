@@ -47,51 +47,35 @@
     gap: 2px;
   }
   .sidebar-item {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding: var(--nav-link-container-padding-y) var(--nav-link-container-padding-x);
-    border-radius: var(--nav-link-expanded-container-radius);
-    background-color: var(--nav-link-container-bg-rest);
-    color: var(--nav-link-content-color-rest);
-    transition: background-color 160ms ease, color 160ms ease;
-    width: 100%;
-    height: 38px;
-    a, button {
-      display: flex;
-      align-items: center;
-      width: 100%;
-      color: inherit;
-      font: inherit;
-      text-decoration: none;
-      outline-offset: 8px;
-    }
-    a:focus-visible, button:focus-visible {
-      outline-offset: 8px;
-    }
+    list-style: none;
+
     &__wrapper {
       display: flex;
       align-items: center;
       justify-content: flex-start;
       flex-wrap: nowrap;
       gap: var(--nav-link-expanded-container-gap);
-      background: none;
-      border: none;
-      padding: 0;
-      margin: 0;
-      color: inherit;
       width: 100%;
-      height: 100%;
-      cursor: pointer;
+      height: 38px;
+      padding: var(--nav-link-container-padding-y) var(--nav-link-container-padding-x);
+      border-radius: var(--nav-link-expanded-container-radius);
+      background-color: var(--nav-link-container-bg-rest);
+      color: var(--nav-link-content-color-rest);
+      text-decoration: none;
+      outline-offset: 8px;
+      transition: background-color 160ms ease, color 160ms ease;
     }
 
-    &:hover:not(.is-active) {
+    &__wrapper:hover:not(.is-active) {
       color: var(--nav-link-content-color-hover);
       background-color: var(--nav-link-container-bg-hover);
     }
-    &.is-active {
+    &__wrapper.is-active {
       color: var(--nav-link-content-color-current);
       background-color: var(--nav-link-container-bg-current);
+    }
+    &__wrapper:focus-visible {
+      outline-offset: 8px;
     }
     &__icon {
       font-size: 16px;

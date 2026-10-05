@@ -6,7 +6,6 @@ import { sidebarMockData } from "./Sidebar.mock.ts";
 import "./Sidebar.scss";
 
 function Sidebar() {
-    const [activeItemId, setActiveItemId] = useState("home");
     const [isCollapsed, setIsCollapsed] = useState(false);
     return (
         <>
@@ -28,8 +27,6 @@ function Sidebar() {
                     <SidebarCategory
                         key={category.id}
                         category={category}
-                        activeItemId={activeItemId}
-                        onSelect={setActiveItemId}
                     />
                 ))}
             </nav>

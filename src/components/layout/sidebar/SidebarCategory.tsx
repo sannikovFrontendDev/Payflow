@@ -3,11 +3,9 @@ import SidebarItem from "./SidebarItem.tsx";
 
 interface SidebarCategoriesProps {
     category: SidebarCategoryData;
-    activeItemId: string;
-    onSelect: (itemId: string) => void;
 }
 
-function SidebarCategory({category, activeItemId, onSelect}: SidebarCategoriesProps) {
+function SidebarCategory({category}: SidebarCategoriesProps) {
     return (
         <>
             <section className="sidebar-category" aria-labelledby={category.id}>
@@ -17,8 +15,6 @@ function SidebarCategory({category, activeItemId, onSelect}: SidebarCategoriesPr
                         <SidebarItem
                             key={item.id}
                             itemData={item}
-                            isActive={item.id === activeItemId}
-                            onSelect={() => onSelect(item.id)}
                         />
                     ))}
                 </ul>
