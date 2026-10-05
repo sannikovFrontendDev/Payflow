@@ -1,4 +1,13 @@
-export type SidebarIconName = 'home';
+export type SidebarIconName =
+    | 'home'
+    | 'operations'
+    | 'stores'
+    | 'balance'
+    | 'documents'
+    | 'events'
+    | 'documentation'
+    | 'company'
+    | 'users';
 export interface SidebarItemData {
     id: string;
     label: string;

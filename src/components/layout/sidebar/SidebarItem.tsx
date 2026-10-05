@@ -1,6 +1,16 @@
 import type {SidebarItemData} from "./Sidebar.types.ts";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faDigitalTachograph} from "@fortawesome/free-solid-svg-icons";
+import {
+    faBookOpen,
+    faBuilding,
+    faFileLines,
+    faHouse,
+    faList,
+    faScroll,
+    faStore,
+    faUsers,
+    faWallet,
+} from "@fortawesome/free-solid-svg-icons";
 
 interface SidebarItemProps {
     itemData: SidebarItemData;
@@ -9,7 +19,15 @@ interface SidebarItemProps {
 }
 
 const sidebarIcons = {
-    'home': faDigitalTachograph,
+    home: faHouse,
+    operations: faList,
+    stores: faStore,
+    balance: faWallet,
+    documents: faFileLines,
+    events: faScroll,
+    documentation: faBookOpen,
+    company: faBuilding,
+    users: faUsers,
 }
 
 function SidebarItem({ itemData, isActive, onSelect }: SidebarItemProps) {
