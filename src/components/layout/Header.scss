@@ -2,4 +2,193 @@
   height: 55px;
   padding-left: 20px;
   padding-right: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  &__left-side {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  &__right-side {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  &__separator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 24px;
+    color: var(--color-surface);
+  }
+  &__divider {
+    height: 24px;
+    border-right: 1px solid var(--color-surface);
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+  &__logo {
+    height: 56px;
+  }
+  &__logo-image {
+    display: block;
+    width: 110px;
+    height: 56px;
+  }
+
+  .dropdown-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    color: var(--color-surface);
+    svg {
+      width: 8px;
+      height: auto;
+    }
+  }
+
+  .company-switcher {
+    height: 42px;
+    padding: 4px 8px;
+    display: grid;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0 8px;
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "name arrow"
+      "info arrow";
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.1s ease-in-out;
+    &__selected-name {
+      grid-area: name;
+      text-align: left;
+      color: var(--color-surface);
+      font-family: var(--font-family), sans-serif;
+      font-style: normal;
+      font-weight: var(--font-weight-medium);
+      font-size: var(--font-size-note);
+      line-height: var(--line-height-note);
+    }
+    &__selected-info {
+      grid-area: info;
+      text-align: left;
+      color: var(--color-surface-muted);
+      font-family: var(--font-family), sans-serif;
+      font-style: normal;
+      font-weight: var(--font-weight-medium);
+      font-size: var(--font-size-micro);
+      line-height: var(--line-height-micro);
+    }
+    .dropdown-arrow {
+      grid-area: arrow;
+    }
+  }
+
+  .current-mode {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    height: 36px;
+    min-width: 136px;
+    padding: 10px 18px;
+    margin-right: 8px;
+    background-color: var(--color-surface);
+    pointer-events: none;
+    color: var(--color-text);
+    font-family: var(--font-family), sans-serif;
+    font-style: normal;
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-meta);
+    line-height: var(--line-height-meta);
+  }
+
+  .search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 42px;
+    width: 42px;
+    margin-right: 4px;
+    color: var(--color-surface);
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.1s ease-in-out;
+  }
+
+  .notification {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 42px;
+    width: 42px;
+    margin-left: 4px;
+    color: var(--color-surface);
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.1s ease-in-out;
+  }
+
+  .profile {
+    display: grid;
+    padding: 4px 8px;
+    align-items: center;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto auto;
+    gap: 0 10px;
+    grid-template-areas:
+    "avatar name arrow"
+    "avatar email arrow";
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.1s ease-in-out;
+    &__avatar {
+      grid-area: avatar;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: var(--color-brand-soft);
+    }
+    &__name {
+      grid-area: name;
+      text-align: left;
+      color: var(--color-surface);
+      font-family: var(--font-family), sans-serif;
+      font-style: normal;
+      font-weight: var(--font-weight-medium);
+      font-size: var(--font-size-note);
+      line-height: var(--line-height-note);
+    }
+    &__email {
+      grid-area: email;
+      text-align: left;
+      color: var(--color-surface-muted);
+      font-family: var(--font-family), sans-serif;
+      font-style: normal;
+      font-weight: var(--font-weight-medium);
+      font-size: var(--font-size-micro);
+      line-height: var(--line-height-micro);
+    }
+    .dropdown-arrow {
+      grid-area: arrow;
+    }
+  }
+
+  .company-switcher:hover,
+  .company-switcher.is-open,
+  .search:hover,
+  .notification:hover,
+  .profile:hover,
+  .profile.is-open {
+    background-color: color-mix(in srgb, var(--color-surface) 12%, transparent);
+  }
 }

@@ -38,6 +38,7 @@
       letter-spacing: 1.2px;
       color: var(--color-text-muted);
       text-transform: uppercase;
+      white-space: nowrap;
     }
   }
   .sidebar-item-list {
@@ -56,17 +57,17 @@
     transition: background-color 160ms ease, color 160ms ease;
     width: 100%;
     height: 38px;
-    a {
+    a, button {
       display: flex;
       align-items: center;
       width: 100%;
       color: inherit;
       font: inherit;
       text-decoration: none;
+      outline-offset: 8px;
     }
-    a:focus-visible {
-      outline: 2px solid var(--color-brand);
-      outline-offset: 2px;
+    a:focus-visible, button:focus-visible {
+      outline-offset: 8px;
     }
     &__wrapper {
       display: flex;

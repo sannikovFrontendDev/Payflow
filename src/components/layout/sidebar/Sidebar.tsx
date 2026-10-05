@@ -11,15 +11,19 @@ function Sidebar() {
     return (
         <>
             <nav
-                aria-label="Основная навигация"
+                id="main-navigation"
+                aria-label="Main navigation"
                 className={isCollapsed ? "is-collapsed sidebar" : "sidebar"}
             >
-                <div
+                <button
+                    type="button"
+                    aria-expanded={!isCollapsed}
+                    aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
                     className="sidebar__collapse-icon"
                     onClick={() => setIsCollapsed(!isCollapsed)}
                 >
                     <FontAwesomeIcon icon={faAngleLeft} />
-                </div>
+                </button>
                 {sidebarMockData.map((category) => (
                     <SidebarCategory
                         key={category.id}

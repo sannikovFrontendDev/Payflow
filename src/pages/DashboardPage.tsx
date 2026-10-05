@@ -3,7 +3,7 @@ import "./DashboardPage.scss";
 function DashboardPage() {
     return (
         <>
-            <div className="dashboard-page">asdf</div>
+            <div className="dashboard-page">Dashboard preview</div>
         </>
     )
 }

@@ -3,35 +3,35 @@ import type { SidebarCategoryData } from "./Sidebar.types.ts";
 export const sidebarMockData: SidebarCategoryData[] = [
     {
         id: "work",
-        label: "Работа",
+        label: "Work",
         items: [
-            { id: "home", label: "Главная", href: "/", icon: "home" },
-            { id: "operations", label: "Операции", href: "/operations", icon: "operations" },
-            { id: "stores", label: "Магазины", href: "/stores", icon: "stores" },
+            { id: "home", label: "Home", href: "/", icon: "home" },
+            { id: "operations", label: "Operations", href: "/operations", icon: "operations" },
+            { id: "stores", label: "Stores", href: "/stores", icon: "stores" },
         ],
     },
     {
         id: "money",
-        label: "Деньги",
+        label: "Money",
         items: [
-            { id: "balance", label: "Выплаты и баланс", href: "/balance", icon: "balance" },
-            { id: "documents", label: "Документы", href: "/documents", icon: "documents" },
+            { id: "balance", label: "Payouts & balance", href: "/balance", icon: "balance" },
+            { id: "documents", label: "Documents", href: "/documents", icon: "documents" },
         ],
     },
     {
         id: "developers",
-        label: "Разработчикам",
+        label: "For developers",
         items: [
-            { id: "events", label: "Журнал событий", href: "/events", icon: "events" },
-            { id: "documentation", label: "Документация", href: "/documentation", icon: "documentation" },
+            { id: "events", label: "Event log", href: "/events", icon: "events" },
+            { id: "documentation", label: "Documentation", href: "/documentation", icon: "documentation" },
         ],
     },
     {
         id: "company",
-        label: "Компания",
+        label: "Company",
         items: [
-            { id: "company-data", label: "Данные компании", href: "/company", icon: "company" },
-            { id: "users", label: "Пользователи", href: "/users", icon: "users" },
+            { id: "company-data", label: "Company details", href: "/company", icon: "company" },
+            { id: "users", label: "Users", href: "/users", icon: "users" },
         ],
     },
 ];
