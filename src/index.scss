@@ -1,0 +1,72 @@
+:root {
+  /* Бренд */
+  --color-brand: #167565;
+  --color-brand-strong: #10594e;
+  --color-brand-soft: #e5f2ee;
+
+  /* Фоны и поверхности */
+  --color-background: #f4f7f5;
+  --color-surface: #ffffff;
+  --color-surface-muted: #edf2ef;
+
+  /* Текст и границы */
+  --color-text: #192520;
+  --color-text-muted: #68766f;
+  --color-border: #dce5e0;
+
+  /* Статусы */
+  --color-success: #25835d;
+  --color-warning: #b7792d;
+  --color-danger: #c34f55;
+
+  /* Сайдбар: обычное состояние */
+  --nav-link-container-bg-rest: var(--color-background);
+  --nav-link-content-color-rest: var(--color-text-muted);
+
+  /* Сайдбар: hover */
+  --nav-link-container-bg-hover: var(--color-surface-muted);
+  --nav-link-content-color-hover: var(--color-brand);
+
+  /* Сайдбар: active */
+  --nav-link-container-bg-current: var(--color-brand-soft);
+  --nav-link-content-color-current: var(--color-brand-strong);
+
+  --font-family: "Inter";
+  --font-size-micro: 10px;
+  --font-size-note: 14px;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+
+  --line-height-micro: 12px;
+  --line-height-note: 20px;
+
+  --nav-link-container-padding-x: 8px;
+  --nav-link-container-padding-y: 8px;
+  --nav-link-expanded-container-gap: 8px;
+  --nav-link-expanded-container-radius: 8px;
+}
+
+* {
+  box-sizing: border-box;
+}
+html, body {
+  padding: 0;
+  margin: 0;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100vh;
+}
+
+#root {
+  height: inherit;
+}
+
+h2, ul, ol, dl, dt, dd {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
