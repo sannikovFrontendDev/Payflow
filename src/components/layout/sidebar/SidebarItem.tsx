@@ -39,12 +39,12 @@ function SidebarItem({ itemData, isActive, onSelect }: SidebarItemProps) {
                     className="sidebar-item__wrapper"
                     onClick={onSelect}
                 >
-                    <div className="sidebar-item__icon">
+                    <span className="sidebar-item__icon">
                         <FontAwesomeIcon icon={sidebarIcons[itemData.icon]}/>
-                    </div>
-                    <div className="sidebar-item__label">
+                    </span>
+                    <span className="sidebar-item__label">
                         {itemData.label}
-                    </div>
+                    </span>
                 </button>
             </li>
         </>
