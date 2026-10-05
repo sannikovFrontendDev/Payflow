@@ -11,11 +11,10 @@ import {
     faUsers,
     faWallet,
 } from "@fortawesome/free-solid-svg-icons";
+import {NavLink} from "react-router";
 
 interface SidebarItemProps {
     itemData: SidebarItemData;
-    isActive: boolean;
-    onSelect: () => void;
 }
 
 const sidebarIcons = {
@@ -30,14 +29,15 @@ const sidebarIcons = {
     users: faUsers,
 }
 
-function SidebarItem({ itemData, isActive, onSelect }: SidebarItemProps) {
+function SidebarItem({ itemData }: SidebarItemProps) {
     return (
         <>
-            <li className={isActive ? "sidebar-item is-active" : "sidebar-item"}>
-                <button
-                    type="button"
-                    className="sidebar-item__wrapper"
-                    onClick={onSelect}
+            <li className="sidebar-item">
+                <NavLink
+                    to={itemData.href}
+                    className={({ isActive }) => isActive
+                        ? "is-active sidebar-item__wrapper"
+                        : "sidebar-item__wrapper"}
                 >
                     <span className="sidebar-item__icon">
                         <FontAwesomeIcon icon={sidebarIcons[itemData.icon]}/>
@@ -45,7 +45,7 @@ function SidebarItem({ itemData, isActive, onSelect }: SidebarItemProps) {
                     <span className="sidebar-item__label">
                         {itemData.label}
                     </span>
-                </button>
+                </NavLink>
             </li>
         </>
     )
