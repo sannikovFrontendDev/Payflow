@@ -1,7 +1,5 @@
-import "./CompanyDetailsPage.scss";
-
 function CompanyDetailsPage() {
-    return <div className="company-details-page">Company details</div>;
+    return <div className="p-4 sm:p-6">Company details</div>;
 }
 
 export default CompanyDetailsPage;

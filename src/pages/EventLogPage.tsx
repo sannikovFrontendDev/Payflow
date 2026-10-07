@@ -1,7 +1,5 @@
-import "./EventLogPage.scss";
-
 function EventLogPage() {
-    return <div className="event-log-page">Event log</div>;
+    return <div className="p-4 sm:p-6">Event log</div>;
 }
 
 export default EventLogPage;

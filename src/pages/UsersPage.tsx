@@ -1,7 +1,5 @@
-import "./UsersPage.scss";
-
 function UsersPage() {
-    return <div className="users-page">Users</div>;
+    return <div className="p-4 sm:p-6">Users</div>;
 }
 
 export default UsersPage;

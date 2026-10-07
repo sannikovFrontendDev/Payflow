@@ -1,7 +1,5 @@
-import "./PayoutsAndBalancePage.scss";
-
 function PayoutsAndBalancePage() {
-    return <div className="payouts-and-balance-page">Payouts and balance</div>;
+    return <div className="p-4 sm:p-6">Payouts and balance</div>;
 }
 
 export default PayoutsAndBalancePage;
