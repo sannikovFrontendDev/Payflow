@@ -12,9 +12,9 @@ function Sidebar() {
             collapsible="icon"
             variant="sidebar"
             layout="flow"
-            className="bg-primary"
+            className="bg-secondary"
         >
-            <SidebarContent className="gap-1 overflow-visible rounded-tl-xl bg-background px-2">
+            <SidebarContent className="gap-1 overflow-visible rounded-tl-xl bg-secondary px-2">
                 <nav aria-label="Основная навигация" className="flex min-h-full flex-col">
                     {sidebarMockData.map((category) => (
                         <SidebarCategory key={category.id} category={category} />

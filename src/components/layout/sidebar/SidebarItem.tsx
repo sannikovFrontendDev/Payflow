@@ -35,7 +35,11 @@ function SidebarItem({ itemData }: SidebarItemProps) {
 
     return (
         <SidebarMenuItem>
-            <SidebarMenuButton asChild isActive={pathname === itemData.href} tooltip={itemData.label}>
+            <SidebarMenuButton
+                asChild
+                isActive={pathname === itemData.href || (itemData.href !== "/" && pathname.startsWith(`${itemData.href}/`))}
+                tooltip={itemData.label}
+            >
                 <NavLink to={itemData.href} end>
                     <Icon aria-hidden="true" />
                     <span>{itemData.label}</span>

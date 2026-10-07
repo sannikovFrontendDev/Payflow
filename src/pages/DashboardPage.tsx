@@ -12,19 +12,14 @@ import {
     CardDescription,
     CardHeader,
 } from "@/components/ui/card";
+import BasePageWrapperUI from "@/components/ui/BasePageWrapperUI.tsx";
 
 function DashboardPage() {
     return (
-        <div className="mx-auto flex w-full flex-col gap-4 px-8 py-6">
-            <header className="mb-1">
-                <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-                    Здравствуйте, Иван
-                </h1>
-                <p className="mt-1 text-base text-muted-foreground sm:text-lg">
-                    Аккаунт создан. Ниже — что осталось до боевых платежей.
-                </p>
-            </header>
-
+        <BasePageWrapperUI
+            title="Здравствуйте, Иван"
+            description="Аккаунт создан. Ниже — что осталось до боевых платежей."
+        >
             <Card>
                 <CardHeader className="gap-3 sm:grid-cols-[minmax(0,1fr)_auto]">
                     <div className="grid gap-2">
@@ -36,7 +31,9 @@ function DashboardPage() {
                             <span>Заполните анкету — 15 минут</span>
                         </CardDescription>
                     </div>
-                    <Button className="w-full sm:w-auto px-5 py-6">Заполнить анкету</Button>
+                    <Button asChild className="w-full px-5 py-6 sm:w-auto">
+                        <Link to="/company/application">Заполнить анкету</Link>
+                    </Button>
                 </CardHeader>
                 <CardContent>
                     <StepperUI data={companyOnboardingStepsMock} />
@@ -63,7 +60,7 @@ function DashboardPage() {
                     linkLabel="Как устроены выплаты"
                 />
             </div>
-        </div>
+        </BasePageWrapperUI>
     );
 }
 

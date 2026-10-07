@@ -78,7 +78,7 @@ function StoreTasks() {
                                     <p className="text-sm text-muted-foreground">{task.description}</p>
                                 </div>
                                 {task.action && (
-                                    <Button variant="secondary" size="sm" className="h-auto max-w-40 whitespace-normal text-center px-2 py-2">
+                                    <Button variant="secondary" size="sm" className="h-auto max-w-40 whitespace-normal text-center px-3 py-3">
                                         {task.action}
                                     </Button>
                                 )}
