@@ -9,6 +9,10 @@ import EventLogPage from "./pages/EventLogPage.tsx";
 import DocumentationPage from "./pages/DocumentationPage.tsx";
 import CompanyDetailsPage from "./pages/CompanyDetailsPage.tsx";
 import UsersPage from "./pages/UsersPage.tsx";
+import CompanyApplicationPage from "./pages/CompanyApplicationPage.tsx";
+import CompanyApplicationSignatoryPage from "./pages/CompanyApplicationSignatoryPage.tsx";
+import CompanyApplicationPayoutAccountsPage from "./pages/CompanyApplicationPayoutAccountsPage.tsx";
+import CompanyApplicationReviewPage from "./pages/CompanyApplicationReviewPage.tsx";
 
 function App() {
 
@@ -25,6 +29,10 @@ function App() {
                     <Route path="/events" element={<EventLogPage />} />
                     <Route path="/documentation" element={<DocumentationPage />} />
                     <Route path="/company" element={<CompanyDetailsPage />} />
+                    <Route path="/company/application" element={<CompanyApplicationPage />} />
+                    <Route path="/company/application/signatory" element={<CompanyApplicationSignatoryPage />} />
+                    <Route path="/company/application/payout-accounts" element={<CompanyApplicationPayoutAccountsPage />} />
+                    <Route path="/company/application/review" element={<CompanyApplicationReviewPage />} />
                     <Route path="/users" element={<UsersPage />} />
                 </Routes>
             </AppLayout>
