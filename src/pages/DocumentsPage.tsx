@@ -1,7 +1,5 @@
-import "./DocumentsPage.scss";
-
 function DocumentsPage() {
-    return <div className="documents-page">Documents</div>;
+    return <div className="p-4 sm:p-6">Documents</div>;
 }
 
 export default DocumentsPage;

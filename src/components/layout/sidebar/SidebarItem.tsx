@@ -1,54 +1,48 @@
-import type {SidebarItemData} from "./Sidebar.types.ts";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
-    faBookOpen,
-    faBuilding,
-    faFileLines,
-    faHouse,
-    faList,
-    faScroll,
-    faStore,
-    faUsers,
-    faWallet,
-} from "@fortawesome/free-solid-svg-icons";
-import {NavLink} from "react-router";
+    BookOpen,
+    Building,
+    FileText,
+    House,
+    List,
+    ScrollText,
+    Store,
+    Users,
+    Wallet,
+} from "lucide-react";
+import { NavLink, useLocation } from "react-router";
+import { SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar";
+import type { SidebarItemData } from "./Sidebar.types.ts";
 
 interface SidebarItemProps {
     itemData: SidebarItemData;
 }
 
 const sidebarIcons = {
-    home: faHouse,
-    operations: faList,
-    stores: faStore,
-    balance: faWallet,
-    documents: faFileLines,
-    events: faScroll,
-    documentation: faBookOpen,
-    company: faBuilding,
-    users: faUsers,
-}
+    home: House,
+    operations: List,
+    stores: Store,
+    balance: Wallet,
+    documents: FileText,
+    events: ScrollText,
+    documentation: BookOpen,
+    company: Building,
+    users: Users,
+};
 
 function SidebarItem({ itemData }: SidebarItemProps) {
+    const Icon = sidebarIcons[itemData.icon];
+    const { pathname } = useLocation();
+
     return (
-        <>
-            <li className="sidebar-item">
-                <NavLink
-                    to={itemData.href}
-                    className={({ isActive }) => isActive
-                        ? "is-active sidebar-item__wrapper"
-                        : "sidebar-item__wrapper"}
-                >
-                    <span className="sidebar-item__icon">
-                        <FontAwesomeIcon icon={sidebarIcons[itemData.icon]}/>
-                    </span>
-                    <span className="sidebar-item__label">
-                        {itemData.label}
-                    </span>
+        <SidebarMenuItem>
+            <SidebarMenuButton asChild isActive={pathname === itemData.href} tooltip={itemData.label}>
+                <NavLink to={itemData.href} end>
+                    <Icon aria-hidden="true" />
+                    <span>{itemData.label}</span>
                 </NavLink>
-            </li>
-        </>
-    )
+            </SidebarMenuButton>
+        </SidebarMenuItem>
+    );
 }
 
 export default SidebarItem;

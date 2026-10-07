@@ -1,26 +1,31 @@
-import type {SidebarCategoryData} from "./Sidebar.types.ts";
+import type { SidebarCategoryData } from "./Sidebar.types.ts";
 import SidebarItem from "./SidebarItem.tsx";
+import {
+    SidebarGroup,
+    SidebarGroupContent,
+    SidebarGroupLabel,
+    SidebarMenu,
+} from "@/components/ui/sidebar";
 
 interface SidebarCategoriesProps {
     category: SidebarCategoryData;
 }
 
-function SidebarCategory({category}: SidebarCategoriesProps) {
+function SidebarCategory({ category }: SidebarCategoriesProps) {
     return (
-        <>
-            <section className="sidebar-category" aria-labelledby={category.id}>
-                <h2 className="sidebar-category__label" id={category.id}>{category.label}</h2>
-                <ul className="sidebar-item-list">
+        <SidebarGroup className="px-0 py-1">
+            <SidebarGroupLabel className="px-2 text-[10px] font-medium uppercase tracking-[0.12em] text-sidebar-foreground/60">
+                {category.label}
+            </SidebarGroupLabel>
+            <SidebarGroupContent>
+                <SidebarMenu className="gap-0.5">
                     {category.items.map((item) => (
-                        <SidebarItem
-                            key={item.id}
-                            itemData={item}
-                        />
+                        <SidebarItem key={item.id} itemData={item} />
                     ))}
-                </ul>
-            </section>
-        </>
-    )
+                </SidebarMenu>
+            </SidebarGroupContent>
+        </SidebarGroup>
+    );
 }
 
 export default SidebarCategory;

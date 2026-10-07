@@ -1,30 +1,30 @@
-import type { ReactNode } from "react"
-
+import type { ReactNode } from "react";
 import Header from "./Header.tsx";
 import Sidebar from "./sidebar/Sidebar.tsx";
-
-import './AppLayout.scss';
+import {
+    SidebarInset,
+    SidebarProvider,
+} from "@/components/ui/sidebar";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 type AppLayoutProps = {
     children: ReactNode;
-}
+};
 
 function AppLayout({ children }: AppLayoutProps) {
     return (
-        <>
-            <div className="app-layout">
-                <header className="app-layout__header">
-                    <Header />
-                </header>
-                <div className="app-layout__wrapper">
-                    <aside className="app-layout__sidebar">
-                        <Sidebar />
-                    </aside>
-                    <main className="app-layout__main">{children}</main>
+        <TooltipProvider>
+            <SidebarProvider className="min-h-svh flex-col bg-primary">
+                <Header />
+                <div className="flex flex-1 items-stretch">
+                    <Sidebar />
+                    <SidebarInset className="min-h-full shadow-none">
+                        <section className="min-w-0 flex-1 rounded-tr-xl bg-background">{children}</section>
+                    </SidebarInset>
                 </div>
-            </div>
-        </>
-    )
+            </SidebarProvider>
+        </TooltipProvider>
+    );
 }
 
 export default AppLayout;
