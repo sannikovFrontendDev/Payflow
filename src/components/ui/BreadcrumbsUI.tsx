@@ -2,6 +2,11 @@ import { ChevronRight } from "lucide-react";
 import { Link, useLocation } from "react-router";
 
 const breadcrumbRoutes: Record<string, { parentLabel: string; parentPath: string; currentLabel: string }> = {
+    "/stores/studio": {
+        parentLabel: "Магазины",
+        parentPath: "/stores",
+        currentLabel: "Сайт студии",
+    },
     "/company/application": {
         parentLabel: "Данные компании",
         parentPath: "/company",

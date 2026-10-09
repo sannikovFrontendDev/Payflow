@@ -1,120 +1,92 @@
 import { Link } from "react-router";
-import BasePageWrapperUI from "@/components/ui/BasePageWrapperUI.tsx";
-import StepperUI from "@/components/ui/StepperUI.tsx";
-import type { StepperStep } from "@/components/ui/StepperUI.mock.ts";
 import { Button } from "@/components/ui/button.tsx";
 import { Card, CardContent, CardHeader } from "@/components/ui/card.tsx";
 
-const applicationSteps: StepperStep[] = [
-    { id: "company", title: "Данные компании", description: "Готово", status: "completed" },
-    { id: "signatory", title: "Подписант и контакты", description: "Заполняете сейчас", status: "current" },
-    { id: "payout-accounts", title: "Счета для выплат", description: "Дальше", status: "upcoming" },
-    { id: "review", title: "Проверка данных", description: "Дальше", status: "upcoming" },
-];
-
 function CompanyApplicationSignatoryPage() {
     return (
-        <BasePageWrapperUI
-            title="Подписант и контакты"
-            description="Шаг 2 из 4. Руководителя и право подписи по уставу берём из ЕГРЮЛ — останется указать, кто подпишет договор и с кем связываться."
-            descriptionClassName="max-w-[720px]"
-            showBreadcrumbs
-        >
-            <div className="grid items-start gap-4 lg:grid-cols-[277px_minmax(0,1fr)]">
-                <Card className="gap-4 py-6">
-                    <CardHeader className="px-6">
-                        <h2 className="text-lg font-semibold tracking-tight sm:text-xl">Шаги анкеты</h2>
-                    </CardHeader>
-                    <CardContent className="px-6">
-                        <StepperUI data={applicationSteps} orientation="vertical" />
-                    </CardContent>
-                </Card>
-
-                <div className="flex min-w-0 flex-col gap-4">
-                    <Card className="gap-4 py-6">
-                        <CardHeader className="px-6">
-                            <h2 className="text-lg font-semibold tracking-tight sm:text-xl">Кто участвует</h2>
-                        </CardHeader>
-                        <CardContent className="flex items-center justify-between gap-4 px-6">
-                            <div className="min-w-0">
-                                <p className="text-sm font-medium">Петров Иван Сергеевич</p>
-                                <p className="text-xs leading-4 text-muted-foreground">Руководитель</p>
-                                <p className="text-xs leading-4 text-muted-foreground">ИНН 771404123456 · паспорт 45 ** ******</p>
-                            </div>
-                            <Button type="button" variant="link" className="h-auto shrink-0 p-0 text-xs">Изменить</Button>
-                        </CardContent>
-                    </Card>
-
-                    <Card className="gap-4 py-6">
-                        <CardHeader className="px-6">
-                            <div className="grid gap-1">
-                                <h2 className="text-lg font-semibold tracking-tight sm:text-xl">Кто подпишет договор</h2>
-                                <p className="text-xs leading-4 text-muted-foreground">
-                                    Право подписи по уставу — из ЕГРЮЛ. Нет нужного человека — выберите доверенность.
-                                </p>
-                            </div>
-                        </CardHeader>
-                        <CardContent className="space-y-3 px-6">
-                            <SignatoryOption title="Петров Иван Сергеевич" description="Генеральный директор · по уставу" />
-                            <SignatoryOption title="Петрова Анна Сергеевна" description="Коммерческий директор · по уставу" />
-                            <SignatoryOption title="Другой человек по доверенности" selected />
-                            <div className="grid gap-3 pt-1 md:grid-cols-3">
-                                <StaticField label="ФИО подписанта" value="Как в паспорте" />
-                                <StaticField label="Номер доверенности" value="Например, 77 АД 1234567" />
-                                <StaticField label="Дата доверенности" value="ДД.ММ.ГГГГ" />
-                            </div>
-                        </CardContent>
-                    </Card>
-
-                    <Card className="gap-4 py-6">
-                        <CardHeader className="px-6">
-                            <div className="grid gap-1">
-                                <h2 className="text-lg font-semibold tracking-tight sm:text-xl">Контакты</h2>
-                                <p className="text-xs leading-4 text-muted-foreground">
-                                    Кому писать по разным вопросам. Если всё ведёт один человек — оставьте отметки «Тот же, что основной».
-                                </p>
-                            </div>
-                        </CardHeader>
-                        <CardContent className="space-y-3 px-6">
-                            <ContactSection
-                                title="Основной контакт"
-                                description="Пишем и звоним по анкете и договору"
-                                fields={[
-                                    ["ФИО", "Петров Иван Сергеевич"],
-                                    ["Телефон", "+7 999 300-12-34"],
-                                    ["Почта", "ivan@romashka-digital.ru"],
-                                ]}
-                            />
-                            <div className="border-t" />
-                            <ContactSection title="Контакт по актам" description="Сюда пришлём акты и УПД" sameAsMain />
-                            <div className="border-t" />
-                            <ContactSection
-                                title="Контакт по возвратам"
-                                description="Напишем, если покупатель попросит вернуть деньги"
-                                sameAsMain={false}
-                                fields={[
-                                    ["ФИО", "Фамилия, имя, отчество"],
-                                    ["Телефон", "+7"],
-                                    ["Почта", "name@company.ru"],
-                                ]}
-                            />
-                            <div className="border-t" />
-                            <ContactSection title="Контакт по IT" description="Технические вопросы интеграции" sameAsMain />
-                        </CardContent>
-                    </Card>
-
-                    <div className="flex flex-wrap items-center gap-3 sm:gap-4">
-                        <Button asChild type="button" variant="secondary" className="h-12 px-6">
-                            <Link to="/company/application">Назад</Link>
-                        </Button>
-                        <Button asChild className="h-12 px-6">
-                            <Link to="/company/application/payout-accounts">Сохранить и продолжить</Link>
-                        </Button>
-                        <p className="text-xs text-muted-foreground">Черновик сохраняется сам</p>
+        <div className="flex min-w-0 flex-col gap-4">
+            <Card className="gap-4 py-6">
+                <CardHeader className="px-6">
+                    <h2 className="text-lg font-semibold tracking-tight sm:text-xl">Кто участвует</h2>
+                </CardHeader>
+                <CardContent className="flex items-center justify-between gap-4 px-6">
+                    <div className="min-w-0">
+                        <p className="text-sm font-medium">Петров Иван Сергеевич</p>
+                        <p className="text-xs leading-4 text-muted-foreground">Руководитель</p>
+                        <p className="text-xs leading-4 text-muted-foreground">ИНН 771404123456 · паспорт 45 ** ******</p>
                     </div>
-                </div>
+                    <Button type="button" variant="link" className="h-auto shrink-0 p-0 text-xs">Изменить</Button>
+                </CardContent>
+            </Card>
+
+            <Card className="gap-4 py-6">
+                <CardHeader className="px-6">
+                    <div className="grid gap-1">
+                        <h2 className="text-lg font-semibold tracking-tight sm:text-xl">Кто подпишет договор</h2>
+                        <p className="text-xs leading-4 text-muted-foreground">
+                            Право подписи по уставу — из ЕГРЮЛ. Нет нужного человека — выберите доверенность.
+                        </p>
+                    </div>
+                </CardHeader>
+                <CardContent className="space-y-3 px-6">
+                    <SignatoryOption title="Петров Иван Сергеевич" description="Генеральный директор · по уставу" />
+                    <SignatoryOption title="Петрова Анна Сергеевна" description="Коммерческий директор · по уставу" />
+                    <SignatoryOption title="Другой человек по доверенности" selected />
+                    <div className="grid gap-3 pt-1 md:grid-cols-3">
+                        <StaticField label="ФИО подписанта" value="Как в паспорте" />
+                        <StaticField label="Номер доверенности" value="Например, 77 АД 1234567" />
+                        <StaticField label="Дата доверенности" value="ДД.ММ.ГГГГ" />
+                    </div>
+                </CardContent>
+            </Card>
+
+            <Card className="gap-4 py-6">
+                <CardHeader className="px-6">
+                    <div className="grid gap-1">
+                        <h2 className="text-lg font-semibold tracking-tight sm:text-xl">Контакты</h2>
+                        <p className="text-xs leading-4 text-muted-foreground">
+                            Кому писать по разным вопросам. Если всё ведёт один человек — оставьте отметки «Тот же, что основной».
+                        </p>
+                    </div>
+                </CardHeader>
+                <CardContent className="space-y-3 px-6">
+                    <ContactSection
+                        title="Основной контакт"
+                        description="Пишем и звоним по анкете и договору"
+                        fields={[
+                            ["ФИО", "Петров Иван Сергеевич"],
+                            ["Телефон", "+7 999 300-12-34"],
+                            ["Почта", "ivan@romashka-digital.ru"],
+                        ]}
+                    />
+                    <div className="border-t" />
+                    <ContactSection title="Контакт по актам" description="Сюда пришлём акты и УПД" sameAsMain />
+                    <div className="border-t" />
+                    <ContactSection
+                        title="Контакт по возвратам"
+                        description="Напишем, если покупатель попросит вернуть деньги"
+                        sameAsMain={false}
+                        fields={[
+                            ["ФИО", "Фамилия, имя, отчество"],
+                            ["Телефон", "+7"],
+                            ["Почта", "name@company.ru"],
+                        ]}
+                    />
+                    <div className="border-t" />
+                    <ContactSection title="Контакт по IT" description="Технические вопросы интеграции" sameAsMain />
+                </CardContent>
+            </Card>
+
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+                <Button asChild type="button" variant="secondary" className="h-12 px-6">
+                    <Link to="/company/application">Назад</Link>
+                </Button>
+                <Button asChild className="h-12 px-6">
+                    <Link to="/company/application/payout-accounts">Сохранить и продолжить</Link>
+                </Button>
+                <p className="text-xs text-muted-foreground">Черновик сохраняется сам</p>
             </div>
-        </BasePageWrapperUI>
+        </div>
     );
 }
 

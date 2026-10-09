@@ -1,16 +1,6 @@
-import BasePageWrapperUI from "@/components/ui/BasePageWrapperUI.tsx";
 import { Link } from "react-router";
 import { Button } from "@/components/ui/button.tsx";
 import { Card, CardContent, CardHeader } from "@/components/ui/card.tsx";
-import StepperUI from "@/components/ui/StepperUI.tsx";
-import type { StepperStep } from "@/components/ui/StepperUI.mock.ts";
-
-const applicationSteps: StepperStep[] = [
-    { id: "company", title: "Данные компании", description: "Заполняете сейчас", status: "current" },
-    { id: "people", title: "Подписант и контакты", description: "Дальше", status: "upcoming" },
-    { id: "payout-accounts", title: "Счета для выплат", description: "Дальше", status: "upcoming" },
-    { id: "review", title: "Проверка данных", description: "Дальше", status: "upcoming" },
-];
 
 const registryFacts = [
     ["Наименование", "ООО «Ромашка Диджитал»"],
@@ -23,86 +13,69 @@ const registryFacts = [
 
 function CompanyApplicationPage() {
     return (
-        <BasePageWrapperUI
-            title="Данные компании"
-            description="Шаг 1 из 4. Большую часть подтянем из ЕГРЮЛ — вам останется проверить"
-            showBreadcrumbs
-        >
-            <div className="grid items-start gap-4 lg:grid-cols-[277px_minmax(0,1fr)]">
-                <Card className="gap-4 py-6">
-                    <CardHeader className="px-6">
-                        <h2 className="text-lg font-semibold tracking-tight sm:text-xl">Шаги анкеты</h2>
-                    </CardHeader>
-                    <CardContent className="px-6">
-                        <StepperUI data={applicationSteps} orientation="vertical" />
-                    </CardContent>
-                </Card>
-
-                <div className="flex min-w-0 flex-col gap-4">
-                    <Card className="gap-4 py-6">
-                        <CardHeader className="flex flex-row items-start justify-between gap-4 px-6">
-                            <div className="grid gap-1">
-                                <h2 className="text-lg font-semibold tracking-tight sm:text-xl">Пришло из ЕГРЮЛ</h2>
-                                <p className="text-xs leading-4 text-muted-foreground">
-                                    Источник — ФНС, сведения получены 20 сентября
-                                </p>
-                            </div>
-                            <Button type="button" variant="link" className="h-auto shrink-0 p-0 text-xs">
-                                Что-то не так?
-                            </Button>
-                        </CardHeader>
-                        <CardContent className="space-y-4 px-6">
-                            <p className="max-w-3xl text-sm leading-5 text-muted-foreground">
-                                Эти сведения мы обязаны брать из реестра сами — так требует пункт 2.2 Положения Банка России 499-П. Вам остаётся проверить, что всё сходится
-                            </p>
-                            <dl>
-                                {registryFacts.map(([label, value]) => (
-                                    <div
-                                        className="grid grid-cols-1 gap-2 border-b py-3 last:border-b-0 sm:grid-cols-[224px_minmax(0,1fr)] sm:gap-6"
-                                        key={label}
-                                    >
-                                        <dt className="text-sm leading-6 text-muted-foreground">{label}</dt>
-                                        <dd className="text-sm leading-6">{value}</dd>
-                                    </div>
-                                ))}
-                            </dl>
-                        </CardContent>
-                    </Card>
-
-                    <Card className="gap-4 py-6">
-                        <CardHeader className="px-6">
-                            <div className="grid gap-1">
-                                <h2 className="text-lg font-semibold tracking-tight sm:text-xl">Что заполняете вы</h2>
-                                <p className="text-xs leading-4 text-muted-foreground">Три поля, которых в реестре нет</p>
-                            </div>
-                        </CardHeader>
-                        <CardContent className="px-6">
-                            <div className="flex w-full max-w-md flex-col gap-4">
-                                <StaticField label="Сайт" value="https://romashka-digital.ru" />
-                                <StaticField
-                                    label="Вид деятельности"
-                                    value="Разработка и поддержка сайтов"
-                                    helper="Может быть изменён банком"
-                                />
-                                <StaticField
-                                    label="Оборот в месяц"
-                                    value="Например, 1 200 000 ₽"
-                                    helper="Влияет на тариф — банк уточнит при проверке"
-                                    placeholder
-                                />
-                            </div>
-                        </CardContent>
-                    </Card>
-
-                    <div className="flex flex-wrap items-center gap-4">
-                        <Button asChild className="h-12 px-6">
-                            <Link to="/company/application/signatory">Сохранить и продолжить</Link>
-                        </Button>
-                        <p className="text-xs text-muted-foreground">Черновик сохраняется сам</p>
+        <div className="flex min-w-0 flex-col gap-4">
+            <Card className="gap-4 py-6">
+                <CardHeader className="flex flex-row items-start justify-between gap-4 px-6">
+                    <div className="grid gap-1">
+                        <h2 className="text-lg font-semibold tracking-tight sm:text-xl">Пришло из ЕГРЮЛ</h2>
+                        <p className="text-xs leading-4 text-muted-foreground">
+                            Источник — ФНС, сведения получены 20 сентября
+                        </p>
                     </div>
-                </div>
+                    <Button type="button" variant="link" className="h-auto shrink-0 p-0 text-xs">
+                        Что-то не так?
+                    </Button>
+                </CardHeader>
+                <CardContent className="space-y-4 px-6">
+                    <p className="max-w-3xl text-sm leading-5 text-muted-foreground">
+                        Эти сведения мы обязаны брать из реестра сами — так требует пункт 2.2 Положения Банка России 499-П. Вам остаётся проверить, что всё сходится
+                    </p>
+                    <dl>
+                        {registryFacts.map(([label, value]) => (
+                            <div
+                                className="grid grid-cols-1 gap-2 border-b py-3 last:border-b-0 sm:grid-cols-[224px_minmax(0,1fr)] sm:gap-6"
+                                key={label}
+                            >
+                                <dt className="text-sm leading-6 text-muted-foreground">{label}</dt>
+                                <dd className="text-sm leading-6">{value}</dd>
+                            </div>
+                        ))}
+                    </dl>
+                </CardContent>
+            </Card>
+
+            <Card className="gap-4 py-6">
+                <CardHeader className="px-6">
+                    <div className="grid gap-1">
+                        <h2 className="text-lg font-semibold tracking-tight sm:text-xl">Что заполняете вы</h2>
+                        <p className="text-xs leading-4 text-muted-foreground">Три поля, которых в реестре нет</p>
+                    </div>
+                </CardHeader>
+                <CardContent className="px-6">
+                    <div className="flex w-full max-w-md flex-col gap-4">
+                        <StaticField label="Сайт" value="https://romashka-digital.ru" />
+                        <StaticField
+                            label="Вид деятельности"
+                            value="Разработка и поддержка сайтов"
+                            helper="Может быть изменён банком"
+                        />
+                        <StaticField
+                            label="Оборот в месяц"
+                            value="Например, 1 200 000 ₽"
+                            helper="Влияет на тариф — банк уточнит при проверке"
+                            placeholder
+                        />
+                    </div>
+                </CardContent>
+            </Card>
+
+            <div className="flex flex-wrap items-center gap-4">
+                <Button asChild className="h-12 px-6">
+                    <Link to="/company/application/signatory">Сохранить и продолжить</Link>
+                </Button>
+                <p className="text-xs text-muted-foreground">Черновик сохраняется сам</p>
             </div>
-        </BasePageWrapperUI>
+        </div>
     );
 }
 
