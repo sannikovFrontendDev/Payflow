@@ -22,7 +22,7 @@ function Sidebar() {
                 </nav>
             </SidebarContent>
             <SidebarTrigger
-                className="absolute right-0 top-1/3 z-20 -translate-y-1/2 translate-x-1/2 rounded-full border bg-background text-foreground shadow-sm hover:bg-accent hover:text-accent-foreground active:not-aria-[haspopup]:-translate-y-1/2 group-data-[collapsible=icon]:-right-2"
+                className="absolute right-0 top-[200px] z-20 -translate-y-1/2 translate-x-1/2 rounded-full border bg-background text-foreground shadow-sm hover:bg-accent hover:text-accent-foreground active:not-aria-[haspopup]:-translate-y-1/2 group-data-[collapsible=icon]:-right-2"
                 aria-label="Открыть или свернуть меню"
             />
         </ShadcnSidebar>

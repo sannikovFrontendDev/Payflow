@@ -1,17 +1,7 @@
 import { TriangleAlert } from "lucide-react";
 import { Link } from "react-router";
-import BasePageWrapperUI from "@/components/ui/BasePageWrapperUI.tsx";
-import StepperUI from "@/components/ui/StepperUI.tsx";
-import type { StepperStep } from "@/components/ui/StepperUI.mock.ts";
 import { Button } from "@/components/ui/button.tsx";
 import { Card, CardContent, CardHeader } from "@/components/ui/card.tsx";
-
-const applicationSteps: StepperStep[] = [
-    { id: "company", title: "Данные компании", description: "Готово", status: "completed" },
-    { id: "signatory", title: "Подписант и контакты", description: "Готово", status: "completed" },
-    { id: "payout-accounts", title: "Счета для выплат", description: "Готово", status: "completed" },
-    { id: "review", title: "Проверка данных", description: "Заполняете сейчас", status: "current" },
-];
 
 const companyFacts: [string, string][] = [
     ["Наименование", "ООО «Ромашка Диджитал»"],
@@ -34,91 +24,73 @@ const payoutFacts: [string, string][] = [
 
 function CompanyApplicationReviewPage() {
     return (
-        <BasePageWrapperUI
-            title="Проверка данных"
-            description="Шаг 4 из 4. Посмотрите, что уйдёт в банк, и отправьте."
-            descriptionClassName="max-w-[720px]"
-            showBreadcrumbs
-        >
-            <div className="grid items-start gap-4 lg:grid-cols-[277px_minmax(0,1fr)]">
-                <Card className="gap-4 py-6">
-                    <CardHeader className="px-6">
-                        <h2 className="text-lg font-semibold tracking-tight sm:text-xl">Шаги анкеты</h2>
-                    </CardHeader>
-                    <CardContent className="px-6">
-                        <StepperUI data={applicationSteps} orientation="vertical" />
-                    </CardContent>
-                </Card>
-
-                <div className="flex min-w-0 flex-col gap-4">
-                    <div className="flex items-start rounded-lg bg-amber-50 text-amber-900" style={{ padding: 12, gap: 8 }}>
-                        <TriangleAlert className="mt-0.5 size-4 shrink-0 text-amber-700" aria-hidden="true" />
-                        <div className="min-w-0">
-                            <p className="text-xs font-medium leading-4">Не выполнено требований: 1</p>
-                            <p className="text-xs leading-4 text-muted-foreground">Банк вернёт сайт, если не исправить. Можно отправить и так.</p>
-                            <Button type="button" variant="link" className="mt-1 h-auto p-0 text-xs">Посмотреть</Button>
-                        </div>
-                    </div>
-
-                    <SummaryCard title="Компания" step="Шаг 1 · данные компании" editTo="/company/application" facts={companyFacts} />
-
-                    <Card className="gap-4 py-6">
-                        <CardHeader className="flex flex-row items-start justify-between gap-4 px-6">
-                            <SummaryHeading title="Люди" step="Шаг 2 · подписант и контакты" />
-                            <Button asChild variant="link" className="h-auto shrink-0 p-0 text-xs">
-                                <Link to="/company/application/signatory">Изменить</Link>
-                            </Button>
-                        </CardHeader>
-                        <CardContent className="px-6">
-                            <div className="pb-3">
-                                <p className="text-sm font-medium">Петров Иван Сергеевич</p>
-                                <p className="text-xs leading-4 text-muted-foreground">Руководитель</p>
-                                <p className="text-xs leading-4 text-muted-foreground">ИНН 771404123456 · паспорт 45 ** ******</p>
-                            </div>
-                            <FactRows facts={peopleFacts} />
-                        </CardContent>
-                    </Card>
-
-                    <SummaryCard title="Счета" step="Шаг 3 · счета для выплат" editTo="/company/application/payout-accounts" facts={payoutFacts} />
-
-                    <Card className="gap-4 py-6">
-                        <CardHeader className="px-6">
-                            <SummaryHeading
-                                title="Подтверждения"
-                                step="Подтверждение сведений и два согласия: на обработку данных — обязательное, на письма — по желанию"
-                            />
-                        </CardHeader>
-                        <CardContent className="space-y-2 px-6">
-                            <Confirmation
-                                title="Сведения в анкете верны"
-                                description="Если что-то расходится, оставьте без отметки — попросим уточнение и проверим сами"
-                            />
-                            <Confirmation
-                                title="Согласен на обработку персональных данных"
-                                description="Обязательное. Без него анкету не отправить: банк проверяет руководителя и подписанта по 115-ФЗ, а это персональные данные."
-                            />
-                            <div className="pl-7">
-                                <Button type="button" variant="link" className="h-auto p-0 text-sm">Политика обработки данных</Button>
-                            </div>
-                            <Confirmation
-                                title="Хочу получать письма о продукте"
-                                description={<>По желанию. Новые способы оплаты и изменения тарифов, не чаще раза в месяц.<br />Отписаться — одной кнопкой в письме.</>}
-                            />
-                        </CardContent>
-                    </Card>
-
-                    <div className="flex flex-wrap items-center gap-3 sm:gap-4">
-                        <Button asChild variant="secondary" className="h-12 px-6">
-                            <Link to="/company/application/payout-accounts">Назад</Link>
-                        </Button>
-                        <Button asChild className="h-12 px-6">
-                            <Link to="/">Отправить в банк</Link>
-                        </Button>
-                        <p className="text-xs text-muted-foreground">Проверка занимает до трёх рабочих дней</p>
-                    </div>
+        <div className="flex min-w-0 flex-col gap-4">
+            <div className="flex items-start rounded-lg bg-amber-50 text-amber-900" style={{ padding: 12, gap: 8 }}>
+                <TriangleAlert className="mt-0.5 size-4 shrink-0 text-amber-700" aria-hidden="true" />
+                <div className="min-w-0">
+                    <p className="text-xs font-medium leading-4">Не выполнено требований: 1</p>
+                    <p className="text-xs leading-4 text-muted-foreground">Банк вернёт сайт, если не исправить. Можно отправить и так.</p>
+                    <Button type="button" variant="link" className="mt-1 h-auto p-0 text-xs">Посмотреть</Button>
                 </div>
             </div>
-        </BasePageWrapperUI>
+
+            <SummaryCard title="Компания" step="Шаг 1 · данные компании" editTo="/company/application" facts={companyFacts} />
+
+            <Card className="gap-4 py-6">
+                <CardHeader className="flex flex-row items-start justify-between gap-4 px-6">
+                    <SummaryHeading title="Люди" step="Шаг 2 · подписант и контакты" />
+                    <Button asChild variant="link" className="h-auto shrink-0 p-0 text-xs">
+                        <Link to="/company/application/signatory">Изменить</Link>
+                    </Button>
+                </CardHeader>
+                <CardContent className="px-6">
+                    <div className="pb-3">
+                        <p className="text-sm font-medium">Петров Иван Сергеевич</p>
+                        <p className="text-xs leading-4 text-muted-foreground">Руководитель</p>
+                        <p className="text-xs leading-4 text-muted-foreground">ИНН 771404123456 · паспорт 45 ** ******</p>
+                    </div>
+                    <FactRows facts={peopleFacts} />
+                </CardContent>
+            </Card>
+
+            <SummaryCard title="Счета" step="Шаг 3 · счета для выплат" editTo="/company/application/payout-accounts" facts={payoutFacts} />
+
+            <Card className="gap-4 py-6">
+                <CardHeader className="px-6">
+                    <SummaryHeading
+                        title="Подтверждения"
+                        step="Подтверждение сведений и два согласия: на обработку данных — обязательное, на письма — по желанию"
+                    />
+                </CardHeader>
+                <CardContent className="space-y-2 px-6">
+                    <Confirmation
+                        title="Сведения в анкете верны"
+                        description="Если что-то расходится, оставьте без отметки — попросим уточнение и проверим сами"
+                    />
+                    <Confirmation
+                        title="Согласен на обработку персональных данных"
+                        description="Обязательное. Без него анкету не отправить: банк проверяет руководителя и подписанта по 115-ФЗ, а это персональные данные."
+                    />
+                    <div className="pl-7">
+                        <Button type="button" variant="link" className="h-auto p-0 text-sm">Политика обработки данных</Button>
+                    </div>
+                    <Confirmation
+                        title="Хочу получать письма о продукте"
+                        description={<>По желанию. Новые способы оплаты и изменения тарифов, не чаще раза в месяц.<br />Отписаться — одной кнопкой в письме.</>}
+                    />
+                </CardContent>
+            </Card>
+
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+                <Button asChild variant="secondary" className="h-12 px-6">
+                    <Link to="/company/application/payout-accounts">Назад</Link>
+                </Button>
+                <Button asChild className="h-12 px-6">
+                    <Link to="/">Отправить в банк</Link>
+                </Button>
+                <p className="text-xs text-muted-foreground">Проверка занимает до трёх рабочих дней</p>
+            </div>
+        </div>
     );
 }
 

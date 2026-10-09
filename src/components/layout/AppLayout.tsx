@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { Outlet } from "react-router";
 import Header from "./Header.tsx";
 import Sidebar from "./sidebar/Sidebar.tsx";
 import {
@@ -6,12 +6,9 @@ import {
     SidebarProvider,
 } from "@/components/ui/sidebar";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import PageLoadingBoundary from "@/components/ui/PageLoadingBoundary.tsx";
 
-type AppLayoutProps = {
-    children: ReactNode;
-};
-
-function AppLayout({ children }: AppLayoutProps) {
+function AppLayout() {
     return (
         <TooltipProvider>
             <SidebarProvider className="min-h-svh flex-col">
@@ -19,7 +16,9 @@ function AppLayout({ children }: AppLayoutProps) {
                 <div className="flex flex-1 items-stretch">
                     <Sidebar />
                     <SidebarInset className="min-h-full shadow-none">
-                        <section className="min-w-0 flex-1 rounded-tr-xl bg-secondary">{children}</section>
+                        <section className="min-w-0 flex-1 rounded-tr-xl bg-secondary">
+                            <PageLoadingBoundary><Outlet /></PageLoadingBoundary>
+                        </section>
                     </SidebarInset>
                 </div>
             </SidebarProvider>
