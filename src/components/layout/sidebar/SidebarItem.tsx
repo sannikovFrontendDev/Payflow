@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { NavLink, useLocation } from "react-router";
 import { SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar";
+import { APP_ROUTES } from "@/app/routes.constants.ts";
 import type { SidebarItemData } from "./Sidebar.types.ts";
 
 interface SidebarItemProps {
@@ -37,7 +38,7 @@ function SidebarItem({ itemData }: SidebarItemProps) {
         <SidebarMenuItem>
             <SidebarMenuButton
                 asChild
-                isActive={pathname === itemData.href || (itemData.href !== "/" && pathname.startsWith(`${itemData.href}/`))}
+                isActive={pathname === itemData.href || (itemData.href !== APP_ROUTES.home && pathname.startsWith(`${itemData.href}/`))}
                 tooltip={itemData.label}
             >
                 <NavLink to={itemData.href} end>

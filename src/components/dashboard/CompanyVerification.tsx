@@ -13,6 +13,7 @@ import {
     CardHeader,
 } from "@/components/ui/card";
 import BasePageWrapperUI from "@/components/ui/BasePageWrapperUI.tsx";
+import { APP_ROUTES } from "@/app/routes.constants.ts";
 
 function CompanyVerification() {
     return (
@@ -32,7 +33,7 @@ function CompanyVerification() {
                         </CardDescription>
                     </div>
                     <Button asChild className="w-full px-5 py-6 sm:w-auto">
-                        <Link to="/company/application">Заполнить анкету</Link>
+                        <Link to={APP_ROUTES.companyApplication}>Заполнить анкету</Link>
                     </Button>
                 </CardHeader>
                 <CardContent>
@@ -48,7 +49,7 @@ function CompanyVerification() {
                     title="Здесь появятся операции"
                     description="После первого тестового платежа в магазине — они появятся здесь."
                     icon={List}
-                    link="/stores"
+                    link={APP_ROUTES.stores}
                     linkLabel="Создать магазин"
                 />
                 <EmptyStateCard
@@ -56,7 +57,7 @@ function CompanyVerification() {
                     title="Здесь появятся выплаты на счёт"
                     description="Первая выплата поступит на следующий рабочий день после боевого платежа."
                     icon={Wallet}
-                    link="/balance"
+                    link={APP_ROUTES.balance}
                     linkLabel="Как устроены выплаты"
                 />
             </div>

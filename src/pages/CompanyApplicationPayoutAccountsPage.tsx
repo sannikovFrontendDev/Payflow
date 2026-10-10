@@ -1,5 +1,6 @@
 import { CircleCheck, FileSpreadsheet, Plus } from "lucide-react";
 import { Link } from "react-router";
+import { APP_ROUTES } from "@/app/routes.constants.ts";
 import { Button } from "@/components/ui/button.tsx";
 import { Card, CardContent, CardHeader } from "@/components/ui/card.tsx";
 
@@ -74,10 +75,10 @@ function CompanyApplicationPayoutAccountsPage() {
 
             <div className="flex flex-wrap items-center gap-3 sm:gap-4">
                 <Button asChild variant="secondary" className="h-12 px-6">
-                    <Link to="/company/application/signatory">Назад</Link>
+                    <Link to={APP_ROUTES.companyApplicationSignatory}>Назад</Link>
                 </Button>
                 <Button asChild className="h-12 px-6">
-                    <Link to="/company/application/review">Сохранить и продолжить</Link>
+                    <Link to={APP_ROUTES.companyApplicationReview}>Сохранить и продолжить</Link>
                 </Button>
                 <p className="text-xs text-muted-foreground">Черновик сохраняется сам</p>
             </div>

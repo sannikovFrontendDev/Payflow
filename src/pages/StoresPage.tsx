@@ -1,5 +1,6 @@
 import BasePageWrapperUI from "@/components/ui/BasePageWrapperUI.tsx";
 import { Link } from "react-router";
+import { APP_ROUTES } from "@/app/routes.constants.ts";
 import { Button } from "@/components/ui/button.tsx";
 import { Card, CardContent, CardHeader } from "@/components/ui/card.tsx";
 import { Input } from "@/components/ui/input.tsx";
@@ -39,7 +40,7 @@ function StoresPage() {
 
                     <div className="flex flex-col items-start gap-3">
                         <Button asChild className="h-12 px-6">
-                            <Link to="/stores/studio">Создать магазин</Link>
+                            <Link to={APP_ROUTES.storeDetails}>Создать магазин</Link>
                         </Button>
                         <p className="text-sm leading-5 text-muted-foreground">
                             Создание займёт минуту. Боевые ключи — после договора и проверки сайта: сайт отправите на проверку, когда подпишете договор.
