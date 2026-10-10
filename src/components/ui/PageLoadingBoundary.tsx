@@ -1,19 +1,25 @@
 import { useEffect, useState, type ReactNode } from "react";
+import { Suspense } from "react";
 import { Outlet, useLocation } from "react-router";
 import { Skeleton } from "@/components/ui/skeleton";
+import { APP_ROUTES } from "@/app/routes.constants.ts";
+import RouteLoadingFallback from "@/components/ui/RouteLoadingFallback.tsx";
 
 const LOADING_PREVIEW_MS = 3500;
+const ENABLE_PAGE_LOADING_PREVIEW = false;
 
 function PageLoadingBoundary({ children }: { children?: ReactNode }) {
     const { pathname } = useLocation();
     const [readyPath, setReadyPath] = useState("");
 
     useEffect(() => {
+        if (!ENABLE_PAGE_LOADING_PREVIEW) return;
+
         const timeoutId = window.setTimeout(() => setReadyPath(pathname), LOADING_PREVIEW_MS);
         return () => window.clearTimeout(timeoutId);
     }, [pathname]);
 
-    if (readyPath !== pathname) {
+    if (ENABLE_PAGE_LOADING_PREVIEW && readyPath !== pathname) {
         return <PageSkeleton pathname={pathname} />;
     }
 
@@ -21,14 +27,14 @@ function PageLoadingBoundary({ children }: { children?: ReactNode }) {
 }
 
 function PageSkeleton({ pathname }: { pathname: string }) {
-    if (pathname === "/sign-in" || pathname === "/sign-up") return <AuthSkeleton pathname={pathname} />;
-    if (pathname === "/company/new") return <SplitFormSkeleton />;
-    if (pathname.startsWith("/company/application")) return <ApplicationSkeleton />;
-    if (pathname === "/") return <DashboardSkeleton />;
-    if (pathname === "/stores") return <StoreCreationSkeleton />;
-    if (pathname === "/stores/studio") return <StoreDetailsSkeleton />;
-    if (pathname === "/company") return <CompanyDetailsSkeleton />;
-    if (pathname === "/documentation") return <DocumentationSkeleton />;
+    if (pathname === APP_ROUTES.signIn || pathname === APP_ROUTES.signUp) return <AuthSkeleton pathname={pathname} />;
+    if (pathname === APP_ROUTES.companyCreate) return <SplitFormSkeleton />;
+    if (pathname.startsWith(APP_ROUTES.companyApplication)) return <ApplicationSkeleton />;
+    if (pathname === APP_ROUTES.home) return <DashboardSkeleton />;
+    if (pathname === APP_ROUTES.stores) return <StoreCreationSkeleton />;
+    if (pathname === APP_ROUTES.storeDetails) return <StoreDetailsSkeleton />;
+    if (pathname === APP_ROUTES.company) return <CompanyDetailsSkeleton />;
+    if (pathname === APP_ROUTES.documentation) return <DocumentationSkeleton />;
     return <TablePageSkeleton />;
 }
 
@@ -184,7 +190,7 @@ function SplitFormSkeleton() {
 }
 
 function AuthSkeleton({ pathname }: { pathname: string }) {
-    const fieldCount = pathname === "/sign-up" ? 4 : 2;
+    const fieldCount = pathname === APP_ROUTES.signUp ? 4 : 2;
 
     return (
         <main className="grid min-h-svh grid-cols-1 gap-4 bg-secondary p-4 sm:p-6 lg:h-svh lg:grid-cols-[minmax(320px,420px)_minmax(0,1fr)] lg:overflow-hidden" aria-busy="true">
@@ -219,7 +225,11 @@ function FilterSkeleton({ width, textWidth, hasCalendar = false }: { width: stri
 }
 
 export function StandalonePageLoadingLayout() {
-    return <PageLoadingBoundary />;
+    return (
+        <Suspense fallback={<RouteLoadingFallback fullScreen />}>
+            <PageLoadingBoundary />
+        </Suspense>
+    );
 }
 
 export default PageLoadingBoundary;

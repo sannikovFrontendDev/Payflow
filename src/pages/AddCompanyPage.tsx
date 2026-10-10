@@ -1,5 +1,6 @@
 import { CircleCheck, X } from "lucide-react";
 import { Link } from "react-router";
+import { APP_ROUTES } from "@/app/routes.constants.ts";
 import { Button } from "@/components/ui/button.tsx";
 import { Card, CardContent } from "@/components/ui/card.tsx";
 import { Input } from "@/components/ui/input.tsx";
@@ -31,7 +32,7 @@ function AddCompanyPage() {
 
             <Card className="relative h-full min-h-0 justify-center gap-0 overflow-hidden rounded-3xl py-0 lg:py-3 max-[800px]:py-0">
                 <Button asChild variant="ghost" size="icon" className="absolute right-4 top-4">
-                    <Link to="/" aria-label="Закрыть добавление компании">
+                    <Link to={APP_ROUTES.home} aria-label="Закрыть добавление компании">
                         <X aria-hidden="true" />
                     </Link>
                 </Button>

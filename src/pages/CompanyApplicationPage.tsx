@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import { APP_ROUTES } from "@/app/routes.constants.ts";
 import { Button } from "@/components/ui/button.tsx";
 import { Card, CardContent, CardHeader } from "@/components/ui/card.tsx";
 
@@ -71,7 +72,7 @@ function CompanyApplicationPage() {
 
             <div className="flex flex-wrap items-center gap-4">
                 <Button asChild className="h-12 px-6">
-                    <Link to="/company/application/signatory">Сохранить и продолжить</Link>
+                    <Link to={APP_ROUTES.companyApplicationSignatory}>Сохранить и продолжить</Link>
                 </Button>
                 <p className="text-xs text-muted-foreground">Черновик сохраняется сам</p>
             </div>

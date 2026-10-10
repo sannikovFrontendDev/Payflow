@@ -1,5 +1,6 @@
 import { CircleDashed } from "lucide-react";
 import { Link } from "react-router";
+import { APP_ROUTES } from "@/app/routes.constants.ts";
 import BasePageWrapperUI from "@/components/ui/BasePageWrapperUI.tsx";
 import BadgeUI from "@/components/ui/BadgeUI.tsx";
 import { Button } from "@/components/ui/button.tsx";
@@ -63,7 +64,7 @@ function CompanyDetailsPage() {
                         </div>
                     </div>
                     <Button asChild variant="link" className="h-auto p-0 text-base">
-                        <Link to="/company/application">Посмотреть анкету</Link>
+                        <Link to={APP_ROUTES.companyApplication}>Посмотреть анкету</Link>
                     </Button>
                 </CardHeader>
 

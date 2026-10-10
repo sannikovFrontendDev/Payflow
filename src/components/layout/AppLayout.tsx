@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Outlet } from "react-router";
 import Header from "./Header.tsx";
 import Sidebar from "./sidebar/Sidebar.tsx";
@@ -7,6 +8,7 @@ import {
 } from "@/components/ui/sidebar";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import PageLoadingBoundary from "@/components/ui/PageLoadingBoundary.tsx";
+import RouteLoadingFallback from "@/components/ui/RouteLoadingFallback.tsx";
 
 function AppLayout() {
     return (
@@ -17,7 +19,9 @@ function AppLayout() {
                     <Sidebar />
                     <SidebarInset className="min-h-full shadow-none">
                         <section className="min-w-0 flex-1 rounded-tr-xl bg-secondary">
-                            <PageLoadingBoundary><Outlet /></PageLoadingBoundary>
+                            <Suspense fallback={<RouteLoadingFallback />}>
+                                <PageLoadingBoundary><Outlet /></PageLoadingBoundary>
+                            </Suspense>
                         </section>
                     </SidebarInset>
                 </div>

@@ -3,25 +3,26 @@ import BasePageWrapperUI from "@/components/ui/BasePageWrapperUI.tsx";
 import StepperUI from "@/components/ui/StepperUI.tsx";
 import type { StepperStep } from "@/components/ui/StepperUI.mock.ts";
 import { Card, CardContent, CardHeader } from "@/components/ui/card.tsx";
+import { APP_ROUTES } from "@/app/routes.constants.ts";
 
 const steps = [
     {
-        path: "/company/application",
+        path: APP_ROUTES.companyApplication,
         title: "Данные компании",
         description: "Большую часть подтянем из ЕГРЮЛ — вам останется проверить",
     },
     {
-        path: "/company/application/signatory",
+        path: APP_ROUTES.companyApplicationSignatory,
         title: "Подписант и контакты",
         description: "Руководителя и право подписи по уставу берём из ЕГРЮЛ — останется указать, кто подпишет договор и с кем связываться.",
     },
     {
-        path: "/company/application/payout-accounts",
+        path: APP_ROUTES.companyApplicationPayoutAccounts,
         title: "Счета для выплат",
         description: "Банк подтянем по БИК. Если услуги оплачиваются на разные счета — добавьте каждый.",
     },
     {
-        path: "/company/application/review",
+        path: APP_ROUTES.companyApplicationReview,
         title: "Проверка данных",
         description: "Посмотрите, что уйдёт в банк, и отправьте.",
     },

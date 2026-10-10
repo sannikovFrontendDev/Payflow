@@ -1,9 +1,14 @@
-import { Bell, Check, ChevronDown, LogOut, Plus, Search } from "lucide-react";
-import { Link } from "react-router";
+import { Bell, Check, ChevronDown, LoaderCircle, LogOut, Plus, Search } from "lucide-react";
+import { Link, useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import SearchDialog from "@/components/search/SearchDialog.tsx";
+import { api } from "@/app/api.ts";
+import type { AppDispatch } from "@/app/store.ts";
+import { useLogoutMutation } from "@/features/auth/auth.api.ts";
+import { APP_ROUTES } from "@/app/routes.constants.ts";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -14,7 +19,24 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 function Header() {
+    const navigate = useNavigate();
+    const dispatch = useDispatch<AppDispatch>();
     const [searchOpen, setSearchOpen] = useState(false);
+    const [logout, { isLoading: isLogoutLoading }] = useLogoutMutation();
+    const [logoutError, setLogoutError] = useState("");
+
+    // Завершает серверную сессию, очищает кеш API и отправляет пользователя на вход.
+    async function handleLogout(): Promise<void> {
+        setLogoutError("");
+
+        try {
+            await logout().unwrap();
+            dispatch(api.util.resetApiState());
+            navigate(APP_ROUTES.signIn, { replace: true });
+        } catch {
+            setLogoutError("Не удалось выйти. Попробуйте ещё раз.");
+        }
+    }
 
     return (
         <header className="flex h-16 shrink-0 items-center justify-between gap-3 bg-primary px-3 text-primary-foreground sm:px-5">
@@ -41,7 +63,7 @@ function Header() {
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem asChild>
-                            <Link to="/company/new" className="cursor-pointer">
+                            <Link to={APP_ROUTES.companyCreate} className="cursor-pointer">
                                 <Plus aria-hidden="true" />
                                 Добавить компанию
                             </Link>
@@ -75,15 +97,29 @@ function Header() {
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
                         <DropdownMenuLabel>Иван Петров</DropdownMenuLabel>
+                        {logoutError && (
+                            <DropdownMenuLabel role="alert" className="text-destructive">
+                                {logoutError}
+                            </DropdownMenuLabel>
+                        )}
                         <DropdownMenuSeparator />
                         <DropdownMenuItem>Профиль</DropdownMenuItem>
                         <DropdownMenuItem>Настройки</DropdownMenuItem>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem asChild variant="destructive">
-                            <Link to="/sign-in" className="cursor-pointer">
+                        <DropdownMenuItem
+                            variant="destructive"
+                            disabled={isLogoutLoading}
+                            onSelect={(event) => {
+                                event.preventDefault();
+                                void handleLogout();
+                            }}
+                        >
+                            {isLogoutLoading ? (
+                                <LoaderCircle className="animate-spin" aria-hidden="true" />
+                            ) : (
                                 <LogOut aria-hidden="true" />
-                                Выйти
-                            </Link>
+                            )}
+                            {isLogoutLoading ? "Выходим…" : "Выйти"}
                         </DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>

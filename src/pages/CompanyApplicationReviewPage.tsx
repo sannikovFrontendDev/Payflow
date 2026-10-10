@@ -1,5 +1,6 @@
 import { TriangleAlert } from "lucide-react";
 import { Link } from "react-router";
+import { APP_ROUTES } from "@/app/routes.constants.ts";
 import { Button } from "@/components/ui/button.tsx";
 import { Card, CardContent, CardHeader } from "@/components/ui/card.tsx";
 
@@ -34,13 +35,13 @@ function CompanyApplicationReviewPage() {
                 </div>
             </div>
 
-            <SummaryCard title="Компания" step="Шаг 1 · данные компании" editTo="/company/application" facts={companyFacts} />
+            <SummaryCard title="Компания" step="Шаг 1 · данные компании" editTo={APP_ROUTES.companyApplication} facts={companyFacts} />
 
             <Card className="gap-4 py-6">
                 <CardHeader className="flex flex-row items-start justify-between gap-4 px-6">
                     <SummaryHeading title="Люди" step="Шаг 2 · подписант и контакты" />
                     <Button asChild variant="link" className="h-auto shrink-0 p-0 text-xs">
-                        <Link to="/company/application/signatory">Изменить</Link>
+                        <Link to={APP_ROUTES.companyApplicationSignatory}>Изменить</Link>
                     </Button>
                 </CardHeader>
                 <CardContent className="px-6">
@@ -53,7 +54,7 @@ function CompanyApplicationReviewPage() {
                 </CardContent>
             </Card>
 
-            <SummaryCard title="Счета" step="Шаг 3 · счета для выплат" editTo="/company/application/payout-accounts" facts={payoutFacts} />
+            <SummaryCard title="Счета" step="Шаг 3 · счета для выплат" editTo={APP_ROUTES.companyApplicationPayoutAccounts} facts={payoutFacts} />
 
             <Card className="gap-4 py-6">
                 <CardHeader className="px-6">
@@ -83,10 +84,10 @@ function CompanyApplicationReviewPage() {
 
             <div className="flex flex-wrap items-center gap-3 sm:gap-4">
                 <Button asChild variant="secondary" className="h-12 px-6">
-                    <Link to="/company/application/payout-accounts">Назад</Link>
+                    <Link to={APP_ROUTES.companyApplicationPayoutAccounts}>Назад</Link>
                 </Button>
                 <Button asChild className="h-12 px-6">
-                    <Link to="/">Отправить в банк</Link>
+                    <Link to={APP_ROUTES.home}>Отправить в банк</Link>
                 </Button>
                 <p className="text-xs text-muted-foreground">Проверка занимает до трёх рабочих дней</p>
             </div>

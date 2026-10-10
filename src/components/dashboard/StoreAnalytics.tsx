@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { ArrowUpRight, CalendarDays, CheckCircle2, ChevronDown, CircleX } from "lucide-react";
 import { Link } from "react-router";
+import { APP_ROUTES } from "@/app/routes.constants.ts";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
@@ -62,7 +63,7 @@ function StoreAnalytics() {
                         </p>
                     </div>
                     <Button variant="link" asChild className="h-auto justify-self-start p-0 text-xs sm:justify-self-end">
-                        <Link to="/stores">Открыть раздел магазинов <ArrowUpRight aria-hidden="true" /></Link>
+                        <Link to={APP_ROUTES.stores}>Открыть раздел магазинов <ArrowUpRight aria-hidden="true" /></Link>
                     </Button>
                 </CardHeader>
                 <CardContent>
@@ -135,7 +136,7 @@ function StoreAnalytics() {
                             </table>
                         </div>
                         <Button variant="link" asChild className="mt-3 h-auto p-0 text-xs">
-                            <Link to="/operations">Все операции <ArrowUpRight aria-hidden="true" /></Link>
+                        <Link to={APP_ROUTES.operations}>Все операции <ArrowUpRight aria-hidden="true" /></Link>
                         </Button>
                     </CardContent>
                 </Card>
@@ -156,7 +157,7 @@ function StoreAnalytics() {
                             Отправлено 10 ноября. Срок зачисления зависит от банка получателя. Если выплата задержится, мы напишем на почту.
                         </p>
                         <Button variant="link" asChild className="h-auto justify-self-start p-0 text-xs">
-                            <Link to="/balance">Все выплаты <ArrowUpRight aria-hidden="true" /></Link>
+                        <Link to={APP_ROUTES.balance}>Все выплаты <ArrowUpRight aria-hidden="true" /></Link>
                         </Button>
                     </CardContent>
                 </Card>

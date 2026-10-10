@@ -1,30 +1,31 @@
 import { ChevronRight } from "lucide-react";
 import { Link, useLocation } from "react-router";
+import { APP_ROUTES } from "@/app/routes.constants.ts";
 
 const breadcrumbRoutes: Record<string, { parentLabel: string; parentPath: string; currentLabel: string }> = {
-    "/stores/studio": {
+    [APP_ROUTES.storeDetails]: {
         parentLabel: "Магазины",
-        parentPath: "/stores",
+        parentPath: APP_ROUTES.stores,
         currentLabel: "Сайт студии",
     },
-    "/company/application": {
+    [APP_ROUTES.companyApplication]: {
         parentLabel: "Данные компании",
-        parentPath: "/company",
+        parentPath: APP_ROUTES.company,
         currentLabel: "Анкета",
     },
-    "/company/application/signatory": {
+    [APP_ROUTES.companyApplicationSignatory]: {
         parentLabel: "Данные компании",
-        parentPath: "/company",
+        parentPath: APP_ROUTES.company,
         currentLabel: "Анкета",
     },
-    "/company/application/payout-accounts": {
+    [APP_ROUTES.companyApplicationPayoutAccounts]: {
         parentLabel: "Данные компании",
-        parentPath: "/company",
+        parentPath: APP_ROUTES.company,
         currentLabel: "Анкета",
     },
-    "/company/application/review": {
+    [APP_ROUTES.companyApplicationReview]: {
         parentLabel: "Данные компании",
-        parentPath: "/company",
+        parentPath: APP_ROUTES.company,
         currentLabel: "Анкета",
     },
 };
